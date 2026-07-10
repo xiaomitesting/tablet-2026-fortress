@@ -244,47 +244,6 @@ const PRODUCTS = [
     targetUser: "儿童、老人、电子书爱好者",
     buyLink: "https://www.mi.com/hk/product/redmi-pad-2-97/",
     lastUpdated: "2026-07-10"
-  },
-  {
-    id: "redmi_pad_se_87",
-    name: "REDMI Pad SE 8.7",
-    series: "Redmi",
-    generation: 1,
-    price: 799,
-    variants: [
-      { ram: 4, storage: 64, price: 799 },
-      { ram: 4, storage: 128, price: 999 },
-      { ram: 6, storage: 128, price: 1199 }
-    ],
-    currency: "HKD",
-    size: 8.7,
-    sizeLabel: "8.7吋",
-    refreshRate: 60,
-    panel: "LCD",
-    chip: "轻度娱乐八核",
-    chipBrand: "MediaTek",
-    battery: 6650,
-    charging: 10,
-    ram: 4,
-    storage: 64,
-    cameras: { rear: "8MP", front: "5MP" },
-    speakers: 2,
-    stylus: false,
-    keyboard: false,
-    weight: 280,
-    thickness: 8.5,
-    os: "HyperOS 2.0",
-    connectivity: ["Wi-Fi 5", "Bluetooth 5.1"],
-    colors: ["Black", "Green"],
-    scenarios: ["reading", "media", "portable"],
-    tags: ["超低价", "便携", "入门"],
-    highlight: "放进口袋的小平板，通勤神器",
-    pros: ["极致轻巧", "价格友好", "长续航"],
-    cons: ["性能入门", "屏幕较小"],
-    rating: 4.0,
-    targetUser: "通勤族、预算极低用户、备用机",
-    buyLink: "https://www.mi.com/hk/product/redmi-pad-se-87/",
-    lastUpdated: "2026-07-10"
   }
 ];
 
