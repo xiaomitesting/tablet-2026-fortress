@@ -1,5 +1,5 @@
 /**
- * 主应用模块
+ * 主应用模块 v2
  */
 const App = (() => {
   let currentTab = 'quiz';
@@ -7,19 +7,16 @@ const App = (() => {
   function init() {
     Favorites.updateBadge();
     switchTab('quiz');
-    // 延迟初始化对比抽屉
     Compare.updateDrawer();
   }
 
   function switchTab(tab) {
     currentTab = tab;
 
-    // 更新导航按钮状态
     document.querySelectorAll('.nav-tab[data-tab]').forEach(btn => {
       btn.classList.toggle('active', btn.dataset.tab === tab);
     });
 
-    // 更新区域可见性
     document.querySelectorAll('.tab-section').forEach(sec => {
       sec.classList.toggle('hidden', sec.id !== `section-${tab}`);
     });
@@ -82,7 +79,7 @@ const App = (() => {
             <li><span>✅</span><div><strong>5G需求</strong><br>仅 Redmi Pad 2 Pro 5G 支持 SIM 卡</div></li>
             <li><span>✅</span><div><strong>存储选择</strong><br>128GB 日常够用，256GB 更从容</div></li>
             <li><span>✅</span><div><strong>配件预算</strong><br>手写笔+键盘套装约 HK$500-800，提前规划</div></li>
-            <li><span>✅</span><div><strong>售后保障</strong><br>香港官网购买享官方保修，支持 Apple Trade-in 类似以旧换新</div></li>
+            <li><span>✅</span><div><strong>售后保障</strong><br>香港官网购买享官方保修</div></li>
           </ul>
         </div>
       </div>
