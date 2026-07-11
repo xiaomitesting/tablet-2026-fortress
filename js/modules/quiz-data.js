@@ -182,8 +182,60 @@ const QuizData = (() => {
     return BITABLE_CONFIG;
   }
 
+  // --- 飛書 Bitable 同步 ---
+
+  // Worker URL：部署 Cloudflare Worker 後填入
+  let SYNC_WORKER_URL = '';
+
+  function setSyncWorkerUrl(url) {
+    SYNC_WORKER_URL = url;
+  }
+
+  function getSyncWorkerUrl() {
+    return SYNC_WORKER_URL;
+  }
+
+  /**
+   * 同步未上傳的記錄到飛書 Bitable
+   * @returns {Promise<{success: boolean, count: number, error?: string}>}
+   */
+  async function syncToFeishu() {
+    const unsynced = getUnsynced();
+    if (unsynced.length === 0) {
+      return { success: true, count: 0, message: '沒有需要同步的記錄' };
+    }
+    if (!SYNC_WORKER_URL) {
+      return { success: false, count: 0, error: 'Worker URL 未配置' };
+    }
+
+    try {
+      const resp = await fetch(SYNC_WORKER_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ records: unsynced }),
+      });
+
+      if (!resp.ok) {
+        const errText = await resp.text();
+        return { success: false, count: 0, error: `HTTP ${resp.status}: ${errText}` };
+      }
+
+      const result = await resp.json();
+      if (result.success) {
+        // 標記為已同步
+        markSynced(unsynced.map(r => r.id));
+        return { success: true, count: unsynced.length };
+      } else {
+        return { success: false, count: 0, error: result.error || '同步失敗' };
+      }
+    } catch (err) {
+      return { success: false, count: 0, error: err.message };
+    }
+  }
+
   return {
     saveResponse, getUnsynced, getSynced, markSynced,
-    exportJSON, downloadJSON, exportUnsyncedJSON, getStats, getBitableConfig, getAll
+    exportJSON, downloadJSON, exportUnsyncedJSON, getStats, getBitableConfig, getAll,
+    syncToFeishu, setSyncWorkerUrl, getSyncWorkerUrl
   };
 })();

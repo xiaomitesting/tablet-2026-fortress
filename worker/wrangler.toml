@@ -1,0 +1,13 @@
+name = "mimi-sync"
+main = "src/index.js"
+compatibility_date = "2024-01-01"
+
+# 部署後把你的 Worker URL 填到這裡（會生成一個 .workers.dev 域名）
+# 也可以自定義域名
+
+# 環境變量（敏感信息用 wrangler secret set 設置，不要寫在這裡）
+# [vars]
+# FEISHU_APP_ID = ""
+# FEISHU_APP_SECRET = ""
+# BITABLE_BASE_TOKEN = "XenmbYueGa1lP4sMiEhcTU0YnOg"
+# BITABLE_TABLE_ID = "tbl4X2EDh1wYYvrL"
