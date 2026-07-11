@@ -84,6 +84,22 @@ const QuizData = (() => {
   }
 
   /**
+   * 觸發下載 JSON 檔案
+   */
+  function downloadJSON() {
+    const data = exportJSON();
+    const blob = new Blob([data], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'mimi_quiz_data_' + new Date().toISOString().slice(0, 10) + '.json';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }
+
+  /**
    * 匯出未同步數據為 JSON
    */
   function exportUnsyncedJSON() {
@@ -168,6 +184,6 @@ const QuizData = (() => {
 
   return {
     saveResponse, getUnsynced, getSynced, markSynced,
-    exportJSON, exportUnsyncedJSON, getStats, getBitableConfig, getAll
+    exportJSON, downloadJSON, exportUnsyncedJSON, getStats, getBitableConfig, getAll
   };
 })();
