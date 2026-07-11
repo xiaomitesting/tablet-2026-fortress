@@ -155,12 +155,16 @@
                 <h2 class="text-base sm:text-lg font-bold text-gray-900 mb-4">📊 平板家族一覽</h2>
                 <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
                     <div class="bg-orange-50 rounded-xl p-3">
-                        <div class="text-2xl font-extrabold text-orange-600">7</div>
+                        <div class="text-2xl font-extrabold text-orange-600">9</div>
                         <div class="text-xs text-gray-500 mt-1">款機型</div>
                     </div>
                     <div class="bg-orange-50 rounded-xl p-3">
                         <div class="text-2xl font-extrabold text-orange-600">HK$999</div>
                         <div class="text-xs text-gray-500 mt-1">起</div>
+                    </div>
+                    <div class="bg-orange-50 rounded-xl p-3">
+                        <div class="text-2xl font-extrabold text-orange-600">HK$1,199-4,999</div>
+                        <div class="text-xs text-gray-500 mt-1">價格帶</div>
                     </div>
                     <div class="bg-orange-50 rounded-xl p-3">
                         <div class="text-2xl font-extrabold text-orange-600">8.8-12.1"</div>
@@ -262,13 +266,24 @@
 // 1. 產品數據庫
 // ============================================================
 const products = [
-    { id:"pad_8_pro", name:"Xiaomi Pad 8 Pro", series:"Xiaomi", price:4199, size:"11.2吋 (144Hz 護眼屏)", sizeLabel:"11.2吋", panel:"LCD", refreshRate:144, chip:"Snapdragon 8 Elite 旗艦處理器", battery:"9200mAh / 67W 快充", batteryNum:9200, spec:"8GB + 256GB", ram:8, storage:256, scenario:["productivity","creative","media"], budget:"premium", screenType:"large", tag:"專業辦公旗艦", highlight:"PC級多工體驗，專業創作首選", desc:"專為極致多工、手寫繪圖與行動辦公量身打造，具備 PC 級系統生產力體驗。", buyLink:"https://www.mi.com/hk/product/xiaomi-pad-8-pro/", stylus:true, keyboard:true, weight:485, pros:["67W快充","3.2K 144Hz高刷屏","手寫筆+鍵盤","旗艦芯片"], cons:["價格較高"], rating:4.8, targetUser:"商務人士、設計師", salesMsg:"旗艦中的旗艦，買了不後悔", salesBadge:"🏆 旗艦之王", variants:[{ram:8,storage:256,price:4199},{ram:12,storage:512,price:4799}] },
-    { id:"pad_mini", name:"Xiaomi Pad Mini", series:"Xiaomi", price:3799, size:"8.8吋 (165Hz 電競屏)", sizeLabel:"8.8吋", panel:"LCD", refreshRate:165, chip:"MediaTek Dimensity 9400+", battery:"7500mAh / 67W 閃充", batteryNum:7500, spec:"8GB + 256GB", ram:8, storage:256, scenario:["gaming","reading","portable"], budget:"premium", screenType:"compact", tag:"掌上遊戲小鋼砲", highlight:"首款小尺寸頂配旗艦，電競級高刷", desc:"首款小尺寸頂配旗艦！極致散熱與電競級高刷，單手持握黃金尺寸，玩家不二之選。", buyLink:"https://www.mi.com/hk/product/xiaomi-pad-mini/", stylus:true, keyboard:false, weight:290, pros:["165Hz電競屏","單手可握","旗艦芯片","支持手寫筆"], cons:["續航一般"], rating:4.7, targetUser:"手遊玩家、通勤族", salesMsg:"打機神器，手感一流", salesBadge:"🎮 電競首選", variants:[{ram:8,storage:256,price:3799},{ram:12,storage:512,price:4299}] },
-    { id:"pad_8", name:"Xiaomi Pad 8", series:"Xiaomi", price:3199, size:"11.2吋 (144Hz 護眼屏)", sizeLabel:"11.2吋", panel:"LCD", refreshRate:144, chip:"Snapdragon 8s Gen 4", battery:"9200mAh / 45W 閃充", batteryNum:9200, spec:"8GB + 256GB", ram:8, storage:256, scenario:["productivity","gaming","media"], budget:"mid", screenType:"large", tag:"全能主力旗艦", highlight:"全能均衡，影音遊戲學習一把抓", desc:"影音、遊戲與日常學習的均衡之選，金屬一體化機身，兼具質感與高性價比。", buyLink:"https://www.mi.com/hk/product/xiaomi-pad-8/", stylus:true, keyboard:true, weight:480, pros:["144Hz護眼屏","四揚聲器","手寫筆+鍵盤"], cons:["充電速度一般"], rating:4.6, targetUser:"學生、家庭用戶", salesMsg:"全能均衡，閉眼入不踩雷", salesBadge:"🔥 人氣爆款", variants:[{ram:8,storage:256,price:3199},{ram:12,storage:256,price:3599}] },
-    { id:"redmi_pad_2_pro_5g", name:"REDMI Pad 2 Pro 5G", series:"Redmi", price:2699, size:"12.1吋 (90Hz 護眼大屏)", sizeLabel:"12.1吋", panel:"LCD", refreshRate:90, chip:"Snapdragon 7s Gen 4 5G", battery:"12000mAh 超大電池", batteryNum:12000, spec:"8GB + 256GB", ram:8, storage:256, scenario:["productivity","media","outdoor"], budget:"mid", screenType:"large", tag:"戶外隨行大屏", highlight:"5G插卡即用，戶外不受限", desc:"支援 5G 行動數據插卡，外出辦公、旅遊追劇隨時隨地不受 Wi-Fi 限制。", buyLink:"https://www.mi.com/hk/product/redmi-pad-2-pro-5g/", stylus:false, keyboard:false, weight:510, pros:["5G移動網絡","12000mAh大電池"], cons:["90Hz偏低","無手寫筆"], rating:4.4, targetUser:"經常出差、戶外工作者", salesMsg:"插卡即用，出門不用遷就Wi-Fi", salesBadge:"📡 5G自由", variants:[{ram:8,storage:256,price:2699}] },
-    { id:"redmi_pad_2_pro", name:"REDMI Pad 2 Pro", series:"Redmi", price:1899, size:"12.1吋 (120Hz 護眼大屏)", sizeLabel:"12.1吋", panel:"LCD", refreshRate:120, chip:"Snapdragon 7s Gen 4", battery:"12000mAh 超大電池", batteryNum:12000, spec:"6GB + 128GB", ram:6, storage:128, scenario:["media","reading","education"], budget:"mid", screenType:"large", tag:"學習娛樂神器", highlight:"千蚊有找大屏+支援手寫筆，抵到爛", desc:"超高性價比的大螢幕首選，學生網課、長輩看劇最佳伴侶，全金屬輕薄機身。", buyLink:"https://www.mi.com/hk/product/redmi-pad-2-pro/", stylus:true, keyboard:true, weight:500, pros:["超高性價比","12.1吋大屏","手寫筆+鍵盤"], cons:["6GB運存偏小"], rating:4.3, targetUser:"學生、長輩、家庭共享", salesMsg:"兩千蚊有找，大屏+支援手寫筆，抵到爛", salesBadge:"💎 性價比王", variants:[{ram:6,storage:128,price:1899},{ram:8,storage:256,price:2199}] },
-    { id:"redmi_pad_2", name:"REDMI Pad 2", series:"Redmi", price:999, size:"11吋 (90Hz 2K護眼屏)", sizeLabel:"11吋", panel:"LCD", refreshRate:90, chip:"MediaTek Helio G100-Ultra", battery:"9000mAh", batteryNum:9000, spec:"4GB + 128GB", ram:4, storage:128, scenario:["reading","media","education"], budget:"low", screenType:"large", tag:"千蚊2K大屏", highlight:"999蚊2K屏+支援手寫筆，超抵", desc:"11吋2K高清大屏，支援Redmi靈感觸控筆，四揚聲器+3.5mm耳機孔，MicroSD擴充，金屬機身。", buyLink:"https://www.mi.com/hk/product/redmi-pad-2/", stylus:true, keyboard:false, weight:480, pros:["2K高清大屏","支援手寫筆","四揚聲器","MicroSD擴充"], cons:["充電較慢"], rating:4.2, targetUser:"學生、閱讀愛好者、家庭用戶", salesMsg:"999蚊2K屏+支援手寫筆，邊度揾？", salesBadge:"🔥 超值首選", variants:[{ram:4,storage:128,price:999},{ram:6,storage:128,price:1199}], extraVersions:["4G版 (支援SIM卡)"] },
-    { id:"redmi_pad_2_97", name:"REDMI Pad 2 9.7", series:"Redmi", price:1099, size:"9.7吋 (護眼屏)", sizeLabel:"9.7吋", panel:"LCD", refreshRate:60, chip:"入門日常效能處理器", battery:"7600mAh / 日常續航", batteryNum:7600, spec:"4G + 64GB", ram:4, storage:64, scenario:["reading","media","kids"], budget:"low", screenType:"compact", tag:"入門隨身護眼寶", highlight:"千元級護眼大屏，學習娛樂兩不誤", desc:"千元級極致實惠，9.7吋輕量化設計，適合電子書閱讀、網上學習與給兒童娛樂使用。", buyLink:"https://www.mi.com/hk/product/redmi-pad-2-97/", stylus:false, keyboard:false, weight:350, pros:["價格極低","輕便易攜"], cons:["性能較弱","存儲較小"], rating:4.1, targetUser:"兒童、老人、電子書愛好者", salesMsg:"送禮自用都啱，千蚊有找", salesBadge:"🎁 送禮首選", variants:[{ram:4,storage:64,price:1099}], extraVersions:["4G版 (支援SIM卡)"] }
+    // ── Xiaomi Pad 8 Pro 柔光版 ──
+    { id:"pad_8_pro_matte", name:"Xiaomi Pad 8 Pro 柔光版", series:"Xiaomi", price:4999, size:"11.2吋 (144Hz 柔光屏)", sizeLabel:"11.2吋", panel:"LCD 柔光", refreshRate:144, chip:"Snapdragon 8 Elite 旗艦處理器", battery:"9200mAh / 67W 快充", batteryNum:9200, spec:"12GB + 512GB", ram:12, storage:512, scenario:["productivity","creative","media"], budget:"premium", screenType:"large", tag:"護眼柔光旗艦", highlight:"柔光屏零反光，長時間護眼創作首選", desc:"採用納米蝕刻柔光屏技術，大幅降低環境光反射，長時間使用更護眼。旗艦芯片+手寫筆+鍵盤，專業創作體感更舒適。", buyLink:"https://www.mi.com/hk/product/xiaomi-pad-8-pro/", stylus:true, keyboard:true, weight:485, pros:["柔光護眼屏","67W快充","旗艦芯片","手寫筆+鍵盤"], cons:["價格較高"], rating:4.8, targetUser:"長時間創作、護眼需求者", salesMsg:"護眼旗艦，柔光不反光", salesBadge:"✨ 柔光護眼", colors:["柔光屏"], variants:[{ram:12,storage:512,price:4999,label:"柔光版"}] },
+    // ── Xiaomi Pad 8 Pro ──
+    { id:"pad_8_pro", name:"Xiaomi Pad 8 Pro", series:"Xiaomi", price:4199, size:"11.2吋 (144Hz 護眼屏)", sizeLabel:"11.2吋", panel:"LCD", refreshRate:144, chip:"Snapdragon 8 Elite 旗艦處理器", battery:"9200mAh / 67W 快充", batteryNum:9200, spec:"8GB + 256GB", ram:8, storage:256, scenario:["productivity","creative","media"], budget:"premium", screenType:"large", tag:"專業辦公旗艦", highlight:"PC級多工體驗，專業創作首選", desc:"專為極致多工、手寫繪圖與行動辦公量身打造，具備 PC 級系統生產力體驗。", buyLink:"https://www.mi.com/hk/product/xiaomi-pad-8-pro/", stylus:true, keyboard:true, weight:485, pros:["67W快充","3.2K 144Hz高刷屏","手寫筆+鍵盤","旗艦芯片"], cons:["價格較高"], rating:4.8, targetUser:"商務人士、設計師", salesMsg:"旗艦中的旗艦，買了不後悔", salesBadge:"🏆 旗艦之王", colors:["灰色","綠色","藍色"], variants:[{ram:8,storage:256,price:4199},{ram:12,storage:512,price:4799}] },
+    // ── Xiaomi Pad Mini ──
+    { id:"pad_mini", name:"Xiaomi Pad Mini", series:"Xiaomi", price:3799, size:"8.8吋 (165Hz 電競屏)", sizeLabel:"8.8吋", panel:"LCD", refreshRate:165, chip:"MediaTek Dimensity 9400+", battery:"7500mAh / 67W 閃充", batteryNum:7500, spec:"8GB + 256GB", ram:8, storage:256, scenario:["gaming","reading","portable"], budget:"premium", screenType:"compact", tag:"掌上遊戲小鋼砲", highlight:"首款小尺寸頂配旗艦，電競級高刷", desc:"首款小尺寸頂配旗艦！極致散熱與電競級高刷，單手持握黃金尺寸，玩家不二之選。", buyLink:"https://www.mi.com/hk/product/xiaomi-pad-mini/", stylus:true, keyboard:false, weight:290, pros:["165Hz電競屏","單手可握","旗艦芯片","支持手寫筆"], cons:["續航一般"], rating:4.7, targetUser:"手遊玩家、通勤族", salesMsg:"打機神器，手感一流", salesBadge:"🎮 電競首選", colors:["灰色","紫色"], variants:[{ram:8,storage:256,price:3799},{ram:12,storage:512,price:4299}] },
+    // ── Xiaomi Pad 8 ──
+    { id:"pad_8", name:"Xiaomi Pad 8", series:"Xiaomi", price:3199, size:"11.2吋 (144Hz 護眼屏)", sizeLabel:"11.2吋", panel:"LCD", refreshRate:144, chip:"Snapdragon 8s Gen 4", battery:"9200mAh / 45W 閃充", batteryNum:9200, spec:"8GB + 256GB", ram:8, storage:256, scenario:["productivity","gaming","media"], budget:"mid", screenType:"large", tag:"全能主力旗艦", highlight:"全能均衡，影音遊戲學習一把抓", desc:"影音、遊戲與日常學習的均衡之選，金屬一體化機身，兼具質感與高性價比。", buyLink:"https://www.mi.com/hk/product/xiaomi-pad-8/", stylus:true, keyboard:true, weight:480, pros:["144Hz護眼屏","四揚聲器","手寫筆+鍵盤"], cons:["充電速度一般"], rating:4.6, targetUser:"學生、家庭用戶", salesMsg:"全能均衡，閉眼入不踩雷", salesBadge:"🔥 人氣爆款", colors:["灰色","綠色","藍色"], variants:[{ram:8,storage:256,price:3199},{ram:12,storage:256,price:3599}] },
+    // ── REDMI Pad 2 Pro 5G ──
+    { id:"redmi_pad_2_pro_5g", name:"REDMI Pad 2 Pro 5G", series:"Redmi", price:2699, size:"12.1吋 (90Hz 護眼大屏)", sizeLabel:"12.1吋", panel:"LCD", refreshRate:90, chip:"Snapdragon 7s Gen 4 5G", battery:"12000mAh 超大電池", batteryNum:12000, spec:"8GB + 256GB", ram:8, storage:256, scenario:["productivity","media","outdoor"], budget:"mid", screenType:"large", tag:"戶外隨行大屏", highlight:"5G插卡即用，戶外不受限", desc:"支援 5G 行動數據插卡，外出辦公、旅遊追劇隨時隨地不受 Wi-Fi 限制。", buyLink:"https://www.mi.com/hk/product/redmi-pad-2-pro-5g/", stylus:true, keyboard:true, weight:510, pros:["5G移動網絡","12000mAh大電池","手寫筆+鍵盤"], cons:["90Hz偏低"], rating:4.4, targetUser:"經常出差、戶外工作者", salesMsg:"插卡即用，出門不用遷就Wi-Fi", salesBadge:"📡 5G自由", colors:["深灰色","銀白色"], variants:[{ram:8,storage:256,price:2699}] },
+    // ── REDMI Pad 2 Pro 柔光版 ──
+    { id:"redmi_pad_2_pro_matte", name:"REDMI Pad 2 Pro 柔光版", series:"Redmi", price:2399, size:"12.1吋 (120Hz 柔光大屏)", sizeLabel:"12.1吋", panel:"LCD 柔光", refreshRate:120, chip:"Snapdragon 7s Gen 4", battery:"12000mAh 超大電池", batteryNum:12000, spec:"8GB + 256GB", ram:8, storage:256, scenario:["media","reading","education"], budget:"mid", screenType:"large", tag:"護眼學習神器", highlight:"柔光大屏+手寫筆，學習護眼兩不誤", desc:"採用柔光屏技術，大幅減少反光，配合 12.1 吋大屏與手寫筆，長時間學習更護眼。", buyLink:"https://www.mi.com/hk/product/redmi-pad-2-pro/", stylus:true, keyboard:true, weight:500, pros:["柔光護眼屏","12.1吋大屏","手寫筆+鍵盤","12000mAh大電池"], cons:["價格比普通版高"], rating:4.4, targetUser:"學生、長輩、護眼需求者", salesMsg:"護眼大屏，學習不傷眼", salesBadge:"✨ 柔光護眼", colors:["柔光屏"], variants:[{ram:8,storage:256,price:2399,label:"柔光版"}] },
+    // ── REDMI Pad 2 Pro ──
+    { id:"redmi_pad_2_pro", name:"REDMI Pad 2 Pro", series:"Redmi", price:1899, size:"12.1吋 (120Hz 護眼大屏)", sizeLabel:"12.1吋", panel:"LCD", refreshRate:120, chip:"Snapdragon 7s Gen 4", battery:"12000mAh 超大電池", batteryNum:12000, spec:"6GB + 128GB", ram:6, storage:128, scenario:["media","reading","education"], budget:"mid", screenType:"large", tag:"學習娛樂神器", highlight:"千蚊有找大屏+支援手寫筆，抵到爛", desc:"超高性價比的大螢幕首選，學生網課、長輩看劇最佳伴侶，全金屬輕薄機身。", buyLink:"https://www.mi.com/hk/product/redmi-pad-2-pro/", stylus:true, keyboard:true, weight:500, pros:["超高性價比","12.1吋大屏","手寫筆+鍵盤"], cons:["6GB運存偏小"], rating:4.3, targetUser:"學生、長輩、家庭共享", salesMsg:"兩千蚊有找，大屏+支援手寫筆，抵到爛", salesBadge:"💎 性價比王", colors:["深灰色","薰衣草紫","銀白色"], variants:[{ram:6,storage:128,price:1899},{ram:8,storage:256,price:2199}] },
+    // ── REDMI Pad 2 ──
+    { id:"redmi_pad_2", name:"REDMI Pad 2", series:"Redmi", price:999, size:"11吋 (90Hz 2K護眼屏)", sizeLabel:"11吋", panel:"LCD", refreshRate:90, chip:"MediaTek Helio G100-Ultra", battery:"9000mAh", batteryNum:9000, spec:"4GB + 128GB", ram:4, storage:128, scenario:["reading","media","education"], budget:"low", screenType:"large", tag:"千蚊2K大屏", highlight:"999蚊2K屏+支援手寫筆，超抵", desc:"11吋2K高清大屏，支援Redmi靈感觸控筆，四揚聲器+3.5mm耳機孔，MicroSD擴充，金屬機身。", buyLink:"https://www.mi.com/hk/product/redmi-pad-2/", stylus:true, keyboard:false, weight:480, pros:["2K高清大屏","支援手寫筆","四揚聲器","MicroSD擴充"], cons:["充電較慢"], rating:4.2, targetUser:"學生、閱讀愛好者、家庭用戶", salesMsg:"999蚊2K屏+支援手寫筆，邊度揾？", salesBadge:"🔥 超值首選", colors:["石墨灰","薰衣紫","青色"], variants:[{ram:4,storage:128,price:999},{ram:6,storage:128,price:1199}], extraVersions:["4G版 (支援SIM卡)"] },
+    // ── REDMI Pad 2 9.7 ──
+    { id:"redmi_pad_2_97", name:"REDMI Pad 2 9.7", series:"Redmi", price:1099, size:"9.7吋 (護眼屏)", sizeLabel:"9.7吋", panel:"LCD", refreshRate:60, chip:"入門日常效能處理器", battery:"7600mAh / 日常續航", batteryNum:7600, spec:"4G + 64GB", ram:4, storage:64, scenario:["reading","media","kids"], budget:"low", screenType:"compact", tag:"入門隨身護眼寶", highlight:"千元級護眼大屏，學習娛樂兩不誤", desc:"千元級極致實惠，9.7吋輕量化設計，適合電子書閱讀、網上學習與給兒童娛樂使用。", buyLink:"https://www.mi.com/hk/product/redmi-pad-2-97/", stylus:false, keyboard:false, weight:350, pros:["價格極低","輕便易攜"], cons:["性能較弱","存儲較小"], rating:4.1, targetUser:"兒童、老人、電子書愛好者", salesMsg:"送禮自用都啱，千蚊有找", salesBadge:"🎁 送禮首選", colors:["石墨灰","銀色"], variants:[{ram:4,storage:64,price:1099}], extraVersions:["4G版 (支援SIM卡)"] }
 ];
 
 
@@ -367,6 +382,7 @@ function renderHome() {
                     <span class="text-[10px] bg-gray-100 text-gray-600 px-2 py-0.5 rounded">${p.chip.split(' ').slice(-1)[0]}</span>
                     <span class="text-[10px] bg-yellow-50 text-yellow-700 px-2 py-0.5 rounded">⭐${p.rating}</span>
                 </div>
+                ${p.colors ? `<div class="flex items-center gap-1.5 mt-2"><span class="text-[10px] text-gray-400">顏色：</span>${p.colors.map(c=>{const m={'灰色':'#808080','綠色':'#4CAF50','藍色':'#2196F3','紫色':'#9C27B0','薰衣草紫':'#B39DDB','深灰色':'#505050','銀白色':'#C0C0C0','石墨灰':'#3E3E3E','薰衣紫':'#9C7FBF','青色':'#00BCD4','銀色':'#D0D0D0','柔光屏':'#E8E4DF'};return `<span class="inline-flex items-center gap-1 text-[10px] text-gray-500"><span class="w-2.5 h-2.5 rounded-full border border-gray-200" style="background:${m[c]||'#CCC'}"></span>${c}</span>`}).join('')}</div>` : ''}
             </div>
         `).join('');
     }
@@ -708,6 +724,17 @@ function renderCatalog(filter='all') {
                     ${p.keyboard?'<span class="text-[10px] bg-blue-50 text-blue-600 px-1.5 py-0.5 rounded">⌨️鍵盤</span>':''}
                     <span class="text-[10px] bg-gray-50 text-gray-500 px-1.5 py-0.5 rounded">⭐${p.rating}</span>
                 </div>
+                ${p.colors ? `
+                <div class="flex items-center gap-2 mt-2.5">
+                    <span class="text-[10px] text-gray-400">顏色：</span>
+                    <div class="flex flex-wrap gap-1">
+                        ${p.colors.map(c => {
+                            const colorMap = {'灰色':'#808080','綠色':'#4CAF50','藍色':'#2196F3','紫色':'#9C27B0','薰衣草紫':'#B39DDB','深灰色':'#505050','銀白色':'#C0C0C0','石墨灰':'#3E3E3E','薰衣紫':'#9C7FBF','青色':'#00BCD4','銀色':'#D0D0D0','柔光屏':'#E8E4DF'};
+                            const bg = colorMap[c] || '#CCCCCC';
+                            return `<span class="inline-flex items-center gap-1 text-[10px] text-gray-500 bg-gray-50 px-1.5 py-0.5 rounded"><span class="w-2.5 h-2.5 rounded-full border border-gray-200" style="background:${bg}"></span>${c}</span>`;
+                        }).join('')}
+                    </div>
+                </div>` : ''}
             </div>
             <div class="p-3 bg-gray-50 border-t border-gray-100 flex items-center justify-between">
                 <label class="flex items-center gap-1.5 cursor-pointer">
@@ -744,11 +771,11 @@ function renderGuide() {
                 <div class="space-y-3 text-sm">
                     <div class="flex gap-2"><span>💰</span><div><strong>HK$999-1,199</strong><br>Redmi Pad 2 — 2K大屏+手寫筆（另有4G版）</div></div>
                     <div class="flex gap-2"><span>💰</span><div><strong>HK$1,099</strong><br>Redmi Pad 2 9.7 — 護眼平板（另有4G版）</div></div>
-                    <div class="flex gap-2"><span>💰💰</span><div><strong>HK$1,899-2,399</strong><br>Redmi Pad 2 Pro — 大屏學習神器</div></div>
+                    <div class="flex gap-2"><span>💰💰</span><div><strong>HK$1,899-2,399</strong><br>Redmi Pad 2 Pro — 大屏學習神器（含柔光版）</div></div>
                     <div class="flex gap-2"><span>💰💰</span><div><strong>HK$2,699</strong><br>Redmi Pad 2 Pro 5G — 戶外5G</div></div>
                     <div class="flex gap-2"><span>💰💰</span><div><strong>HK$3,199-3,599</strong><br>Xiaomi Pad 8 — 全能旗艦</div></div>
                     <div class="flex gap-2"><span>💰💰💰</span><div><strong>HK$3,799-4,299</strong><br>Pad Mini — 電競小鋼砲</div></div>
-                    <div class="flex gap-2"><span>💰💰💰</span><div><strong>HK$4,199-4,999</strong><br>Pad 8 Pro — 極致性能</div></div>
+                    <div class="flex gap-2"><span>💰💰💰</span><div><strong>HK$4,199-4,999</strong><br>Pad 8 Pro — 極致性能（含柔光版）</div></div>
                 </div>
             </div>
             <div class="bg-white rounded-xl border border-gray-200 p-6 shadow-sm">
@@ -765,8 +792,9 @@ function renderGuide() {
             <div class="bg-white rounded-xl border border-gray-200 p-6 shadow-sm">
                 <h3 class="font-bold text-gray-900 mb-4">📌 購買小貼士</h3>
                 <div class="space-y-3 text-sm">
-                    <div class="flex gap-2"><span>✅</span><div><strong>手寫筆需求</strong><br>僅 Pad 8 Pro 和 Pad 8 支持</div></div>
+                    <div class="flex gap-2"><span>✅</span><div><strong>手寫筆需求</strong><br>Pad 8 Pro/Pad 8/Pad Mini/Redmi Pad 2 Pro/Redmi Pad 2 均支持</div></div>
                     <div class="flex gap-2"><span>✅</span><div><strong>5G/4G需求</strong><br>Redmi Pad 2 Pro 5G 支持5G SIM；Redmi Pad 2/9.7 有4G版</div></div>
+                    <div class="flex gap-2"><span>✅</span><div><strong>護眼柔光屏</strong><br>Pad 8 Pro 柔光版 / Redmi Pad 2 Pro 柔光版 — 長時間使用更護眼</div></div>
                     <div class="flex gap-2"><span>✅</span><div><strong>存儲選擇</strong><br>128GB 日常夠用，256GB 更從容</div></div>
                     <div class="flex gap-2"><span>✅</span><div><strong>配件預算</strong><br>手寫筆+鍵盤約 HK$500-800</div></div>
                     <div class="flex gap-2"><span>✅</span><div><strong>售後保障</strong><br>香港官網享官方保修</div></div>
