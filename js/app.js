@@ -53,12 +53,12 @@ const App = (() => {
         <div class="guide-card">
           <h3>📌 按预算选</h3>
           <ul>
-            <li><span>💰</span><div><strong>HK$999-1,099</strong><br>Redmi Pad SE 8.7 / Pad 2 9.7 — 基础够用，入门首选</div></li>
+            <li><span>💰</span><div><strong>HK$1,199-1,399</strong><br>Redmi Pad 2 9.7 — 基础够用，入门首选</div></li>
             <li><span>💰💰</span><div><strong>HK$1,899</strong><br>Redmi Pad 2 Pro — 大屏学习娱乐神器</div></li>
             <li><span>💰💰</span><div><strong>HK$2,699</strong><br>Redmi Pad 2 Pro 5G — 需要移动网络的户外场景</div></li>
-            <li><span>💰💰💰</span><div><strong>HK$2,999</strong><br>Xiaomi Pad 8 — 全能旗舰，最均衡的选择</div></li>
-            <li><span>💰💰💰</span><div><strong>HK$3,499</strong><br>Pad Mini — 小屏旗舰，电竞玩家最爱</div></li>
-            <li><span>💰💰💰</span><div><strong>HK$3,999</strong><br>Pad 8 Pro — 极致性能，专业创作者之选</div></li>
+            <li><span>💰💰💰</span><div><strong>HK$3,199</strong><br>Xiaomi Pad 8 — 全能旗舰，最均衡的选择</div></li>
+            <li><span>💰💰💰</span><div><strong>HK$3,799</strong><br>Pad Mini — 小屏旗舰，电竞玩家最爱</div></li>
+            <li><span>💰💰💰</span><div><strong>HK$4,199</strong><br>Pad 8 Pro — 极致性能，专业创作者之选</div></li>
           </ul>
         </div>
         <div class="guide-card">

@@ -210,10 +210,11 @@ const PRODUCTS = [
     name: "REDMI Pad 2",
     series: "Redmi",
     generation: 2,
-    price: 999,
+    price: 1399,
     variants: [
-      { ram: 4, storage: 128, price: 999 },
-      { ram: 6, storage: 128, price: 1199 }
+      { ram: 4, storage: 128, price: 1399 },
+      { ram: 8, storage: 256, price: 1799 },
+      { ram: 8, storage: 256, price: 1999, label: "4G版" }
     ],
     currency: "HKD",
     size: 11,
@@ -234,26 +235,28 @@ const PRODUCTS = [
     thickness: 7.5,
     os: "HyperOS 2.0",
     connectivity: ["Wi-Fi 5", "Bluetooth 5.3"],
-    colors: ["Graphite Gray", "Sky Blue"],
+    colors: ["Graphite Gray", "Lavender", "Sky Blue"],
     scenarios: ["reading", "media", "education"],
     tags: ["2K屏", "手写笔", "高性价比"],
-    highlight: "999蚊2K屏+手寫筆，超抵",
+    highlight: "2K屏+手寫筆，超抵",
     pros: ["2K高清大屏", "支援手寫筆", "四揚聲器", "MicroSD擴充"],
     cons: ["充電較慢"],
     rating: 4.2,
     targetUser: "學生、閱讀愛好者、家庭用戶",
     buyLink: "https://www.mi.com/hk/product/redmi-pad-2/",
-    lastUpdated: "2026-07-10"
+    lastUpdated: "2026-07-12"
   },
   {
     id: "redmi_pad_2_97",
     name: "REDMI Pad 2 9.7",
     series: "Redmi",
     generation: 2,
-    price: 1299,
+    price: 1199,
     variants: [
-      { ram: 4, storage: 64, price: 1099 },
-      { ram: 4, storage: 128, price: 1299, label: "4G版" }
+      { ram: 4, storage: 64, price: 1199 },
+      { ram: 4, storage: 128, price: 1299 },
+      { ram: 4, storage: 64, price: 1399, label: "4G版" },
+      { ram: 4, storage: 128, price: 1499, label: "4G版" }
     ],
     currency: "HKD",
     size: 9.7,
@@ -262,7 +265,7 @@ const PRODUCTS = [
     panel: "LCD",
     chip: "入门日常处理器",
     chipBrand: "MediaTek",
-    battery: 6000,
+    battery: 7600,
     charging: 10,
     ram: 4,
     storage: 64,
@@ -274,16 +277,16 @@ const PRODUCTS = [
     thickness: 8.0,
     os: "HyperOS 2.0",
     connectivity: ["Wi-Fi 5", "Bluetooth 5.1"],
-    colors: ["Gray", "Blue"],
+    colors: ["Graphite Gray", "Silver"],
     scenarios: ["reading", "media", "kids"],
-    tags: ["入门", "护眼", "儿童"],
+    tags: ["入门", "护眼"],
     highlight: "千元级护眼平板，全家适用",
     pros: ["价格极低", "轻便易携", "护眼模式"],
     cons: ["性能较弱", "存储较小"],
     rating: 4.1,
-    targetUser: "儿童、老人、电子书爱好者",
+    targetUser: "老人、电子书爱好者",
     buyLink: "https://www.mi.com/hk/product/redmi-pad-2-97/",
-    lastUpdated: "2026-07-10"
+    lastUpdated: "2026-07-12"
   }
 ];
 
