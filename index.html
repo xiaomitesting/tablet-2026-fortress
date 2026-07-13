@@ -96,7 +96,7 @@
             <div class="flex items-center space-x-2 sm:space-x-3 shrink-0 cursor-pointer" onclick="switchTab('home')">
                 <svg class="w-7 h-7 sm:w-8 sm:h-8 shrink-0" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                     <rect width="100" height="100" rx="20" fill="#FF6700"/>
-                    <text x="50" y="68" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="52" font-weight="700" fill="white" letter-spacing="-2">mi</text>
+                    <text x="50" y="68" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="40" font-weight="700" fill="white" letter-spacing="-1">大階</text>
                 </svg>
                 <span class="text-sm sm:text-xl font-bold tracking-tight text-gray-900 whitespace-nowrap">Xiaomi <span class="text-miOrange font-normal">平板選購助手</span></span>
             </div>
@@ -343,7 +343,7 @@ const SCENARIOS = [
 // ============================================================
 let currentTab = 'home';
 let quizStep = 1;
-let answers = { scenario:null, accessory:null, budget:null, size:null, connectivity:null, brand:null, priority:null };
+let answers = { scenario:null, accessory:null, budget:null, size:null, connectivity:null, environment:null, priority:null };
 let selectedForCompare = [];
 let favorites = JSON.parse(localStorage.getItem('mi_tablet_favs') || '[]');
 let currentCatalogFilter = 'all';
@@ -501,10 +501,11 @@ const stepsData = {
         {value:"need_5g",label:"📡 需要5G",desc:"追求極速移動網絡。"},
         {value:"no_preference",label:"🤷 都可以",desc:"沒有特別要求。"}
     ]},
-    6: { title:"📱 第六步：您有品牌偏好嗎？", options:[
-        {value:"no_pref",label:"🤷 沒有偏好",desc:"只要係小米平板都得。"},
-        {value:"prefer_xiaomi",label:"🟠 偏好Xiaomi",desc:"追求旗艦性能與品質。"},
-        {value:"prefer_redmi",label:"🔴 偏好Redmi",desc:"追求高性價比。"}
+    6: { title:"🏠 第六步：主要使用環境？", options:[
+        {value:"personal",label:"👤 個人使用",desc:"自己用，追求個人最佳體驗。"},
+        {value:"family",label:"👨‍👩‍👧‍👦 家庭共用",desc:"家人一起用，需要多用戶支援。"},
+        {value:"office",label:"💼 辦公/學校",desc:"工作或上課用，注重生產力。"},
+        {value:"outdoor",label:"🏕️ 戶外/移動",desc:"經常外出攜帶，需要耐用便攜。"}
     ]},
     7: { title:"⚡ 第七步：您最看重什麼？", options:[
         {value:"performance",label:"⚡ 性能",desc:"芯片速度、流暢度"},
@@ -555,7 +556,7 @@ function prevStep() { if (quizStep > 1) { quizStep--; renderQuiz(); } }
 
 function resetQuiz() {
     quizStep = 1;
-    answers = {scenario:null,accessory:null,budget:null,size:null,connectivity:null,brand:null,priority:null};
+    answers = {scenario:null,accessory:null,budget:null,size:null,connectivity:null,environment:null,priority:null};
     document.getElementById('quiz-card').classList.remove('hidden');
     document.getElementById('result-card').classList.add('hidden');
     renderQuiz();
@@ -624,11 +625,14 @@ function calculateMatches() {
                 score+=5;
             }
         }
-        // 品牌偏好 (8分)
-        if (answers.brand && answers.brand !== 'no_pref') {
-            if (answers.brand === 'prefer_xiaomi' && p.series === 'Xiaomi') { score+=8; reasons.push('Xiaomi系列'); }
-            else if (answers.brand === 'prefer_redmi' && p.series === 'Redmi') { score+=8; reasons.push('Redmi系列'); }
-            else { score+=2; }
+        // 使用環境 (8分)
+        if (answers.environment && answers.environment !== 'none') {
+            switch(answers.environment) {
+                case 'personal': score += 3; break;
+                case 'family': if (p.id.includes('kids') || p.rating >= 4.5) { score += 8; reasons.push('適合家庭使用'); } else score += 3; break;
+                case 'office': if (p.scenario && p.scenario.includes('productivity')) { score += 8; reasons.push('辦公生產力強'); } else score += 3; break;
+                case 'outdoor': if (p.id.includes('5g') || p.weight <= 350) { score += 8; reasons.push('戶外便攜'); } else score += 3; break;
+            }
         }
         score += p.rating * 2;
         return { product:p, score:Math.min(100,Math.round(score)), reasons, warnings };
@@ -875,9 +879,22 @@ function renderGuide() {
         });
     });
     const scenarioLabels = { productivity:'💼 辦公學習', gaming:'🎮 遊戲電競', media:'🎬 影音娛樂', creative:'🎨 創意設計', reading:'📖 閱讀', portable:'🏃 便攜出行', kids:'👶 兒童教育', outdoor:'🏕️ 戶外辦公' };
+    // 場景自定義排序
+    const sceneRank = {
+        productivity: ['pad_8_pro_matte','pad_8_pro','pad_8','redmi_pad_2_pro'],
+        gaming: ['pad_mini','pad_8_pro']
+    };
+    const sceneRankIdx = (sid) => (sceneRank[sid] || []);
     const scenarioHtml = Object.entries(scenarioMap).map(([sid, items]) => {
         const label = scenarioLabels[sid] || sid;
-        const sorted = items.sort((a,b) => b.rating - a.rating);
+        const rank = sceneRankIdx(sid);
+        const sorted = rank.length > 0
+            ? items.sort((a,b) => {
+                const ai = rank.indexOf(a.id), bi = rank.indexOf(b.id);
+                const aOk = ai >= 0 ? ai : 999, bOk = bi >= 0 ? bi : 999;
+                return aOk !== bOk ? aOk - bOk : b.rating - a.rating;
+              })
+            : items.sort((a,b) => b.rating - a.rating);
         return `<div class="flex gap-2 mb-2"><span class="shrink-0">${label.split(' ')[0]}</span><div><strong>${label.split(' ').slice(1).join(' ')}</strong><br>${sorted.map(p => p.name).join(' > ')}</div></div>`;
     }).join('');
 
