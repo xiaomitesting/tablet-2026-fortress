@@ -28,6 +28,8 @@
         .quiz-option.selected { border-color: #FF6700; background: #FFF7ED; box-shadow: 0 0 0 3px rgba(255,103,0,0.15); }
         .product-card { transition: all 0.25s ease; }
         .product-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+        .product-img { width:100%; aspect-ratio:4/3; object-fit:contain; background:#f9fafb; border-radius:12px; }
+        .product-img-fallback { width:100%; aspect-ratio:4/3; display:flex; align-items:center; justify-content:center; border-radius:12px; font-size:32px; font-weight:800; color:white; }
         .compare-chip { transition: all 0.2s ease; }
         .compare-chip:hover { transform: scale(1.05); }
         .fav-btn { transition: all 0.2s ease; }
@@ -130,7 +132,7 @@
         <!-- 橫幅導言 -->
         <div class="text-center mb-6 sm:mb-10">
             <h1 class="text-lg sm:text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight">尋找最適合您的小米平板</h1>
-            <p class="mt-2 sm:mt-3 text-xs sm:text-lg text-gray-500 max-w-2xl mx-auto">回答 7 個簡單問題，AI 為您推薦最佳機型。</p>
+            <p class="mt-2 sm:mt-3 text-xs sm:text-lg text-gray-500 max-w-2xl mx-auto">回答 7 個簡單問題，為您推薦最佳機型。</p>
         </div>
 
         <!-- ================= TAB 0: 首頁 ================= -->
@@ -142,7 +144,7 @@
                 <div class="relative z-10">
                     <p class="text-orange-100 text-sm mb-2">👋 歡迎使用</p>
                     <h1 class="text-2xl sm:text-4xl font-extrabold mb-3 leading-tight">Xiaomi 平板電腦<br class="sm:hidden">智能選購助手</h1>
-                    <p class="text-orange-100 text-sm sm:text-base max-w-lg mb-6">回答幾個簡單問題，AI 為您推薦最適合的小米平板。涵蓋 Xiaomi Pad 全系列及 Redmi Pad，從入門到旗艦一網打盡。</p>
+                    <p class="text-orange-100 text-sm sm:text-base max-w-lg mb-6">回答幾個簡單問題，為您推薦最適合的小米平板。涵蓋 Xiaomi Pad 全系列及 Redmi Pad，從入門到旗艦一網打盡。</p>
                     <button onclick="switchTab('quiz')" class="bg-white text-orange-600 font-bold px-6 py-3 rounded-xl hover:bg-orange-50 transition-all shadow-lg text-sm sm:text-base">
                         🎯 開始智能推薦
                     </button>
@@ -155,7 +157,7 @@
                 <div onclick="switchTab('quiz')" class="bg-white rounded-xl border border-gray-200 p-4 cursor-pointer hover:shadow-md hover:border-orange-300 transition-all group">
                     <div class="text-2xl mb-2">🎯</div>
                     <div class="font-bold text-sm text-gray-900 group-hover:text-orange-600">智能推薦</div>
-                    <div class="text-[11px] text-gray-500 mt-1">7 步問答<br>AI 精準匹配</div>
+                    <div class="text-[11px] text-gray-500 mt-1">7 步問答<br>智能匹配</div>
                 </div>
                 <div onclick="switchTab('catalog')" class="bg-white rounded-xl border border-gray-200 p-4 cursor-pointer hover:shadow-md hover:border-orange-300 transition-all group">
                     <div class="text-2xl mb-2">📱</div>
@@ -183,32 +185,7 @@
             <h2 class="text-lg sm:text-xl font-bold text-gray-900 mb-4">🏆 人氣推薦</h2>
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8" id="home-recommendations"></div>
 
-            <!-- 數據統計 -->
-            <div class="bg-white rounded-xl border border-gray-200 p-5 sm:p-6">
-                <h2 class="text-base sm:text-lg font-bold text-gray-900 mb-4">📊 平板家族一覽</h2>
-                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
-                    <div class="bg-orange-50 rounded-xl p-3">
-                        <div class="text-2xl font-extrabold text-orange-600">10</div>
-                        <div class="text-xs text-gray-500 mt-1">款機型</div>
-                    </div>
-                    <div class="bg-orange-50 rounded-xl p-3">
-                        <div class="text-2xl font-extrabold text-orange-600">HK$1,199</div>
-                        <div class="text-xs text-gray-500 mt-1">起</div>
-                    </div>
-                    <div class="bg-orange-50 rounded-xl p-3">
-                        <div class="text-2xl font-extrabold text-orange-600">HK$1,199-4,999</div>
-                        <div class="text-xs text-gray-500 mt-1">價格帶</div>
-                    </div>
-                    <div class="bg-orange-50 rounded-xl p-3">
-                        <div class="text-2xl font-extrabold text-orange-600">8.8-12.1"</div>
-                        <div class="text-xs text-gray-500 mt-1">螢幕尺寸</div>
-                    </div>
-                    <div class="bg-orange-50 rounded-xl p-3">
-                        <div class="text-2xl font-extrabold text-orange-600">4.1-5.0</div>
-                        <div class="text-xs text-gray-500 mt-1">用戶評分</div>
-                    </div>
-                </div>
-            </div>
+
         </section>
 
         <!-- ================= TAB 1: 智能推薦問答 ================= -->
@@ -306,6 +283,20 @@
                 <button onclick="closeImportModal()" class="px-4 py-2 border border-gray-300 rounded-lg text-sm text-gray-600">取消</button>
             </div>
             <p id="import-status" class="text-xs mt-2 text-center"></p>
+        </div>
+    </div>
+
+    <!-- 限時優惠橫幅 -->
+    <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 mb-6">
+        <div class="bg-gradient-to-r from-red-500 to-orange-500 rounded-xl p-4 sm:p-5 text-white flex flex-col sm:flex-row items-center justify-between gap-3">
+            <div class="flex items-center gap-3">
+                <span class="text-3xl">🎁</span>
+                <div>
+                    <div class="font-bold text-sm sm:text-base">限時優惠：購買任意平板即送保護殼</div>
+                    <div class="text-xs sm:text-sm text-white/80">額外加購手寫筆或鍵盤再減 HK$100</div>
+                </div>
+            </div>
+            <span class="text-xs bg-white/20 px-3 py-1 rounded-full whitespace-nowrap">線下門市限定</span>
         </div>
     </div>
 
@@ -428,9 +419,12 @@ function renderHome() {
     const recContainer = document.getElementById('home-recommendations');
     if (recContainer) {
         recContainer.innerHTML = top3.map((p, i) => `
-            <div class="bg-white rounded-xl border border-gray-200 p-5 shadow-sm hover:shadow-md transition-all cursor-pointer relative" onclick="openDetailModal('${p.id}')">
-                <div class="absolute top-3 left-3 bg-orange-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">#${i+1} 熱門</div>
-                <div class="flex justify-between items-start mb-3 mt-2">
+            <div class="bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-all cursor-pointer relative overflow-hidden" onclick="openDetailModal('${p.id}')">
+                <div class="absolute top-3 left-3 bg-orange-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full z-10">#${i+1} 熱門</div>
+                <div class="p-4">
+                    ${p.image ? `<img src="${p.image}" alt="${p.name}" class="product-img mb-3" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">` : ''}
+                    <div class="product-img-fallback mb-3 ${p.image ? 'hidden' : ''}" style="background:linear-gradient(135deg,${p.series==='Xiaomi'?'#FF6700,#FF8533':'#EF4444,#F87171'})">${p.name.replace(/Xiaomi |REDMI /i,'').charAt(0)}</div>
+                <div class="flex justify-between items-start mb-2">
                     <span class="px-2 py-0.5 ${p.series==='Xiaomi'?'bg-orange-100 text-orange-600':'bg-red-50 text-red-600'} rounded text-[10px] font-bold uppercase">${p.series}</span>
                     <span class="text-lg font-extrabold text-orange-600">HK$${p.price.toLocaleString()}</span>
                 </div>
@@ -443,6 +437,7 @@ function renderHome() {
                     <span class="text-[10px] bg-yellow-50 text-yellow-700 px-2 py-0.5 rounded">⭐${p.rating}</span>
                 </div>
                 ${p.colors ? `<div class="flex items-center gap-1.5 mt-2"><span class="text-[10px] text-gray-400">顏色：</span>${p.colors.map(c=>{const m={'灰色':'#808080','綠色':'#4CAF50','藍色':'#2196F3','紫色':'#9C27B0','薰衣草紫':'#B39DDB','深灰色':'#505050','銀白色':'#C0C0C0','石墨灰':'#3E3E3E','薰衣紫':'#9C7FBF','青色':'#00BCD4','銀色':'#D0D0D0','柔光屏':'#E8E4DF'};return `<span class="inline-flex items-center gap-1 text-[10px] text-gray-500"><span class="w-2.5 h-2.5 rounded-full border border-gray-200" style="background:${m[c]||'#CCC'}"></span>${c}</span>`}).join('')}</div>` : ''}
+                </div>
             </div>
         `).join('');
     }
@@ -785,6 +780,8 @@ function renderCatalog(filter='all') {
     grid.innerHTML = filtered.map(p => `
         <div class="product-card bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm flex flex-col justify-between">
             <div class="p-3 sm:p-5">
+                ${p.image ? `<img src="${p.image}" alt="${p.name}" class="product-img mb-3" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">` : ''}
+                <div class="product-img-fallback mb-3 ${p.image ? 'hidden' : ''}" style="background:linear-gradient(135deg,${p.series==='Xiaomi'?'#FF6700,#FF8533':'#EF4444,#F87171'})">${p.name.replace(/Xiaomi |REDMI /i,'').charAt(0)}</div>
                 <div class="flex justify-between items-start mb-2">
                     <div class="flex items-center gap-1.5">
                         <span class="px-2.5 py-1 ${p.series==='Xiaomi'?'bg-orange-100 text-miOrange':'bg-red-50 text-red-600'} rounded-lg text-xs font-extrabold uppercase">${p.series}</span>
@@ -857,37 +854,56 @@ function sortProducts(arr, key) {
 // 9. 選購指南
 // ============================================================
 function renderGuide() {
+    // 按预算分组
+    const budgetGroups = [
+        { label: '💰 入門級 (HK$1,500以下)', min: 0, max: 1500 },
+        { label: '💰💰 中階 (HK$1,500-$3,000)', min: 1500, max: 3000 },
+        { label: '💰💰💰 旗艦 (HK$3,000以上)', min: 3000, max: Infinity }
+    ];
+    const budgetHtml = budgetGroups.map(g => {
+        const items = products.filter(p => p.price >= g.min && p.price < g.max).sort((a,b) => a.price - b.price);
+        if (items.length === 0) return '';
+        return `<div class="mb-3"><div class="text-xs font-bold text-gray-700 mb-1.5">${g.label}</div>${items.map(p => `<div class="flex gap-2 mb-2"><span class="text-miOrange shrink-0">•</span><div><strong>HK$${p.price.toLocaleString()}</strong> ${p.name}<br><span class="text-gray-500">${p.highlight}</span></div></div>`).join('')}</div>`;
+    }).join('');
+
+    // 按场景分组
+    const scenarioMap = {};
+    products.forEach(p => {
+        (p.scenario || []).forEach(s => {
+            if (!scenarioMap[s]) scenarioMap[s] = [];
+            scenarioMap[s].push(p);
+        });
+    });
+    const scenarioLabels = { productivity:'💼 辦公學習', gaming:'🎮 遊戲電競', media:'🎬 影音娛樂', creative:'🎨 創意設計', reading:'📖 閱讀', portable:'🏃 便攜出行', kids:'👶 兒童教育', outdoor:'🏕️ 戶外辦公' };
+    const scenarioHtml = Object.entries(scenarioMap).map(([sid, items]) => {
+        const label = scenarioLabels[sid] || sid;
+        const sorted = items.sort((a,b) => b.rating - a.rating);
+        return `<div class="flex gap-2 mb-2"><span class="shrink-0">${label.split(' ')[0]}</span><div><strong>${label.split(' ').slice(1).join(' ')}</strong><br>${sorted.map(p => p.name).join(' > ')}</div></div>`;
+    }).join('');
+
+    // 购买贴士 - 动态生成
+    const stylusProducts = products.filter(p => p.stylus);
+    const keyboardProducts = products.filter(p => p.keyboard);
+    const has5G = products.some(p => p.id.includes('5g'));
+    const hasMatte = products.some(p => p.panel && p.panel.includes('柔光'));
+
     document.getElementById('guide-section').innerHTML = `
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
             <div class="bg-white rounded-xl border border-gray-200 p-4 sm:p-6 shadow-sm">
                 <h3 class="font-bold text-gray-900 mb-4">📌 按預算選</h3>
-                <div class="space-y-3 text-sm">
-                    <div class="flex gap-2"><span>💰</span><div><strong>HK$1,399-1,999</strong><br>Redmi Pad 2 — 2K大屏+手寫筆（另有4G版）</div></div>
-                    <div class="flex gap-2"><span>💰</span><div><strong>HK$1,199-1,499</strong><br>Redmi Pad 2 9.7 — 護眼平板（另有4G版）</div></div>
-                    <div class="flex gap-2"><span>💰💰</span><div><strong>HK$1,899-2,399</strong><br>Redmi Pad 2 Pro — 大屏學習神器（含柔光版）</div></div>
-                    <div class="flex gap-2"><span>💰💰</span><div><strong>HK$2,699</strong><br>Redmi Pad 2 Pro 5G — 戶外5G</div></div>
-                    <div class="flex gap-2"><span>💰💰</span><div><strong>HK$3,199-3,599</strong><br>Xiaomi Pad 8 — 全能旗艦</div></div>
-                    <div class="flex gap-2"><span>💰💰💰</span><div><strong>HK$3,799-4,299</strong><br>Pad Mini — 電競小鋼砲</div></div>
-                    <div class="flex gap-2"><span>💰💰💰</span><div><strong>HK$4,199-4,999</strong><br>Pad 8 Pro — 極致性能（含柔光版）</div></div>
-                </div>
+                <div class="space-y-3 text-sm">${budgetHtml}</div>
             </div>
             <div class="bg-white rounded-xl border border-gray-200 p-6 shadow-sm">
                 <h3 class="font-bold text-gray-900 mb-4">📌 按場景選</h3>
-                <div class="space-y-3 text-sm">
-                    <div class="flex gap-2"><span>💼</span><div><strong>辦公學習</strong><br>Pad 8 Pro > Pad 8 > Redmi Pad 2 Pro</div></div>
-                    <div class="flex gap-2"><span>🎮</span><div><strong>遊戲電競</strong><br>Pad Mini (165Hz) > Pad 8 Pro</div></div>
-                    <div class="flex gap-2"><span>🎬</span><div><strong>影音娛樂</strong><br>Pad 8 Pro > Pad 8 > Redmi Pad 2 Pro</div></div>
-                    <div class="flex gap-2"><span>🎨</span><div><strong>創意設計</strong><br>Pad 8 Pro > Pad 8 (均支持手寫筆)</div></div>
-                    <div class="flex gap-2"><span>📖</span><div><strong>閱讀</strong><br>Pad Mini > Redmi Pad 2 Pro</div></div>
-                    <div class="flex gap-2"><span>🏃</span><div><strong>便攜出行</strong><br>Pad Mini (326g) > Redmi Pad 2 9.7 (406g)</div></div>
-                </div>
+                <div class="space-y-3 text-sm">${scenarioHtml}</div>
             </div>
             <div class="bg-white rounded-xl border border-gray-200 p-6 shadow-sm">
                 <h3 class="font-bold text-gray-900 mb-4">📌 購買小貼士</h3>
                 <div class="space-y-3 text-sm">
-                    <div class="flex gap-2"><span>✅</span><div><strong>手寫筆需求</strong><br>Pad 8 Pro/Pad 8/Pad Mini/Redmi Pad 2 Pro/Redmi Pad 2/兒童護眼版 均支持</div></div>
-                    <div class="flex gap-2"><span>✅</span><div><strong>5G/4G需求</strong><br>Redmi Pad 2 Pro 5G 支持5G SIM；Redmi Pad 2/9.7 有4G版</div></div>
-                    <div class="flex gap-2"><span>✅</span><div><strong>護眼柔光屏</strong><br>Pad 8 Pro 柔光版 / Redmi Pad 2 Pro 柔光版 — 長時間使用更護眼</div></div>
+                    <div class="flex gap-2"><span>✅</span><div><strong>手寫筆需求</strong><br>${stylusProducts.map(p => p.name).join('、')} 支持</div></div>
+                    <div class="flex gap-2"><span>✅</span><div><strong>鍵盤需求</strong><br>${keyboardProducts.length > 0 ? keyboardProducts.map(p => p.name).join('、') + ' 支持' : '暫無支持鍵盤的機型'}</div></div>
+                    ${has5G ? `<div class="flex gap-2"><span>✅</span><div><strong>5G需求</strong><br>${products.filter(p=>p.id.includes('5g')).map(p=>p.name).join('、')} 支持5G SIM</div></div>` : ''}
+                    ${hasMatte ? `<div class="flex gap-2"><span>✅</span><div><strong>護眼柔光屏</strong><br>${products.filter(p=>p.panel&&p.panel.includes('柔光')).map(p=>p.name).join('、')} — 長時間使用更護眼</div></div>` : ''}
                     <div class="flex gap-2"><span>✅</span><div><strong>存儲選擇</strong><br>128GB 日常夠用，256GB 更從容</div></div>
                     <div class="flex gap-2"><span>✅</span><div><strong>配件預算</strong><br>手寫筆+鍵盤約 HK$500-800</div></div>
                     <div class="flex gap-2"><span>✅</span><div><strong>售後保障</strong><br>香港官網享官方保修</div></div>
@@ -1027,11 +1043,16 @@ function openCompareModal() {
     if (selectedForCompare.length<2) { alert('請至少勾選2款'); return; }
     const modal = document.getElementById('compare-modal');
     const prods = selectedForCompare.map(id=>products.find(p=>p.id===id));
+    const scenarioLabels = {productivity:'辦公/學習',gaming:'遊戲電競',media:'影音娛樂',creative:'創意設計',reading:'閱讀',portable:'便攜出行',kids:'兒童教育',outdoor:'戶外辦公'};
     const fields = [
-        {key:'tag',label:'定位'},{key:'size',label:'螢幕'},{key:'chip',label:'芯片'},
-        {key:'battery',label:'電池',fmt:v=>`${v}mAh`},{key:'charging',label:'充電'},{key:'spec',label:'存儲'},{key:'price',label:'價格',fmt:v=>`HK$${v.toLocaleString()}`},
-        {key:'weight',label:'重量',fmt:v=>`${v}g`},{key:'stylus',label:'手寫筆',fmt:v=>v?'✅':'❌'},
-        {key:'rating',label:'評分',fmt:v=>`⭐ ${v}`}
+        {key:'tag',label:'定位'},{key:'size',label:'螢幕'},{key:'panel',label:'面板類型'},{key:'refreshRate',label:'刷新率',fmt:v=>`${v}Hz`},
+        {key:'chip',label:'芯片'},{key:'spec',label:'存儲'},{key:'price',label:'價格',fmt:v=>`HK$${v.toLocaleString()}`},
+        {key:'battery',label:'電池',fmt:v=>`${v}mAh`},{key:'charging',label:'充電'},
+        {key:'weight',label:'重量',fmt:v=>`${v}g`},
+        {key:'stylus',label:'手寫筆',fmt:v=>v?'✅ 支持':'❌ 不支持'},{key:'keyboard',label:'鍵盤',fmt:v=>v?'✅ 支持':'❌ 不支持'},
+        {key:'scenario',label:'適用場景',fmt:v=>Array.isArray(v)?v.map(s=>scenarioLabels[s]||s).join('、'):(v||'-')},
+        {key:'colors',label:'可選顏色',fmt:v=>Array.isArray(v)?v.join('、'):'-'},
+        {key:'rating',label:'評分',fmt:v=>`⭐ ${v}`},{key:'targetUser',label:'適合人群'}
     ];
     document.getElementById('compare-table-headers').innerHTML = `<th class="p-3 text-sm font-semibold text-gray-500">規格</th>${prods.map(p=>`<th class="p-3 text-center"><div class="text-miOrange font-bold">${p.name}</div><div class="text-xs text-gray-500">HK$${p.price.toLocaleString()}</div></th>`).join('')}`;
     document.getElementById('compare-table-body').innerHTML = fields.map(f=>`<tr><td class="p-3 font-semibold text-sm text-gray-500 bg-gray-50">${f.label}</td>${prods.map(p=>`<td class="p-3 text-sm text-center">${f.fmt?f.fmt(p[f.key]):p[f.key]}</td>`).join('')}</tr>`).join('');
@@ -1069,6 +1090,7 @@ function openDetailModal(id) {
     content.innerHTML = `
         <div class="relative">
             <button onclick="closeDetailModal()" class="absolute top-4 right-4 z-10 w-8 h-8 bg-gray-100 hover:bg-gray-200 rounded-full flex items-center justify-center text-gray-500 font-bold text-lg">&times;</button>
+            ${p.image ? `<div class="bg-gray-50 p-6 flex justify-center rounded-t-2xl"><img src="${p.image}" alt="${p.name}" class="max-h-48 object-contain" onerror="this.style.display='none'"></div>` : ''}
             <div class="p-6 sm:p-8">
                 <div class="flex items-center gap-2 mb-3">
                     <span class="px-3 py-1 ${p.series==='Xiaomi'?'bg-orange-100 text-miOrange':'bg-red-50 text-red-600'} rounded-lg text-xs font-extrabold uppercase">${p.series}</span>
@@ -1133,9 +1155,18 @@ function openDetailModal(id) {
 
                 <div class="text-xs text-gray-400 mb-4">適合：${p.targetUser}</div>
 
+                <div class="bg-gradient-to-r from-red-50 to-orange-50 rounded-xl p-4 mb-5 border border-red-100">
+                    <div class="flex items-center gap-2 mb-1">
+                        <span class="text-lg">🎁</span>
+                        <span class="font-bold text-sm text-red-600">限時優惠</span>
+                    </div>
+                    <p class="text-xs text-gray-600">購買即送保護殼 · 額外加購手寫筆或鍵盤再減 HK$100</p>
+                    <p class="text-[10px] text-gray-400 mt-1">線下門市限定</p>
+                </div>
+
                 <div class="flex gap-3">
-                    <a href="${p.buyLink}" target="_blank" class="flex-1 text-center bg-miOrange text-white py-3 rounded-xl font-bold text-sm hover:bg-orange-600 transition-all">前往官網選購 →</a>
-                    <button onclick="toggleFav('${p.id}');openDetailModal('${p.id}')" class="px-5 py-3 border-2 border-gray-200 rounded-xl font-semibold text-sm hover:border-red-300 transition-all">${favorites.includes(p.id)?'❤️ 已收藏':'🤍 收藏'}</button>
+                    <button onclick="toggleFav('${p.id}');openDetailModal('${p.id}')" class="flex-1 text-center py-3 border-2 ${favorites.includes(p.id)?'border-red-300 bg-red-50':'border-gray-200'} rounded-xl font-semibold text-sm hover:border-red-300 transition-all">${favorites.includes(p.id)?'❤️ 已收藏':'🤍 收藏'}</button>
+                    <button onclick="closeDetailModal()" class="px-5 py-3 bg-miOrange text-white rounded-xl font-bold text-sm hover:bg-orange-600 transition-all">返回瀏覽</button>
                 </div>
             </div>
         </div>

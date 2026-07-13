@@ -16,11 +16,11 @@
       "brand": "Apple",
       "name": "iPad Air 11\" (M4)",
       "market": "HK",
-      "price": 5999,
+      "price": 4599,
       "currency": "HKD",
       "source": "apple.com/hk",
-      "notes": "128GB Wi-Fi 起步價 HK$5,999；256GB HK$6,999 起",
-      "lastUpdated": "2026-07-13"
+      "notes": "128GB Wi-Fi 起步價；M3 已停产，M4 版本于 2026 年 3 月上市，价格不变",
+      "lastUpdated": "2026-07-12"
     },
     {
       "id": "samsung_tab_s10_fe",
@@ -45,5 +45,5 @@
       "lastUpdated": "2026-07-12"
     }
   ],
-  "lastChecked": "2026-07-13T06:00:00+08:00"
+  "lastChecked": "2026-07-12T06:00:00+08:00"
 }

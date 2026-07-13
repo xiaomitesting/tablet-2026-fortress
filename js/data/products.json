@@ -51,7 +51,8 @@
         "label": "柔光版"
       }
     ],
-    "charging": "67W"
+    "charging": "67W",
+    "image": "https://cdn.cnbj0.fds.api.mi-img.com/b2c-shopapi-pms/pms_1736714262_84799.png"
   },
   {
     "id": "pad_8_pro",
@@ -111,7 +112,8 @@
         "price": 4799
       }
     ],
-    "charging": "67W"
+    "charging": "67W",
+    "image": "https://cdn.cnbj0.fds.api.mi-img.com/b2c-shopapi-pms/pms_1736714262_84799.png"
   },
   {
     "id": "pad_mini",
@@ -170,7 +172,8 @@
         "price": 4299
       }
     ],
-    "charging": "45W"
+    "charging": "45W",
+    "image": "https://cdn.cnbj0.fds.api.mi-img.com/b2c-shopapi-pms/pms_1751842753_37453.png"
   },
   {
     "id": "pad_8",
@@ -229,7 +232,8 @@
         "price": 3599
       }
     ],
-    "charging": "45W"
+    "charging": "45W",
+    "image": "https://cdn.cnbj0.fds.api.mi-img.com/b2c-shopapi-pms/pms_1736714076_42513.png"
   },
   {
     "id": "redmi_pad_2_pro_5g",
@@ -282,7 +286,8 @@
         "price": 2699
       }
     ],
-    "charging": "33W"
+    "charging": "33W",
+    "image": "https://cdn.cnbj0.fds.api.mi-img.com/b2c-shopapi-pms/pms_1725079208_56736.png"
   },
   {
     "id": "redmi_pad_2_pro_matte",
@@ -336,7 +341,8 @@
         "label": "柔光版"
       }
     ],
-    "charging": "33W"
+    "charging": "33W",
+    "image": "https://cdn.cnbj0.fds.api.mi-img.com/b2c-shopapi-pms/pms_1725079208_56736.png"
   },
   {
     "id": "redmi_pad_2_pro",
@@ -395,7 +401,8 @@
         "price": 2199
       }
     ],
-    "charging": "33W"
+    "charging": "33W",
+    "image": "https://cdn.cnbj0.fds.api.mi-img.com/b2c-shopapi-pms/pms_1725079208_56736.png"
   },
   {
     "id": "redmi_pad_2",
@@ -461,7 +468,8 @@
         "label": "4G版"
       }
     ],
-    "charging": "18W"
+    "charging": "18W",
+    "image": "https://cdn.cnbj0.fds.api.mi-img.com/b2c-shopapi-pms/pms_1716277933_96443.png"
   },
   {
     "id": "redmi_pad_2_97",
@@ -531,7 +539,8 @@
         "label": "4G版"
       }
     ],
-    "charging": "18W"
+    "charging": "18W",
+    "image": "https://cdn.cnbj0.fds.api.mi-img.com/b2c-shopapi-pms/pms_1716277933_96443.png"
   },
   {
     "id": "redmi_pad_2_kids",
@@ -584,6 +593,7 @@
         "price": 1599
       }
     ],
-    "charging": "18W"
+    "charging": "18W",
+    "image": "https://cdn.cnbj0.fds.api.mi-img.com/b2c-shopapi-pms/pms_1716277933_96443.png"
   }
 ]
