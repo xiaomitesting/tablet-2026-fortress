@@ -355,6 +355,7 @@ let quizStep = 1;
 let answers = { scenario:[], accessory:null, budget:null, size:null, connectivity:null, environment:null, priority:[] };
 // 多選步驟的臨時選擇狀態
 let multiSelectTemp = [];
+let lastMultiStep = -1; // 追蹤上次多選步驟，避免 re-render 重置選擇
 let selectedForCompare = [];
 let favorites = JSON.parse(localStorage.getItem('mi_tablet_favs') || '[]');
 let currentCatalogFilter = 'all';
@@ -537,10 +538,11 @@ function renderQuiz() {
     const progress = ((quizStep - 1) / TOTAL_QUIZ_STEPS) * 100;
     const isMulti = MULTI_SELECT_STEPS.includes(quizStep);
 
-    // 多選步驟：初始化臨時選擇（從已保存的答案恢復）
-    if (isMulti) {
+    // 多選步驟：步驟切換時從已保存答案恢復，同一步 re-render 保留用戶選擇
+    if (isMulti && quizStep !== lastMultiStep) {
         const key = quizStep === 1 ? 'scenario' : 'priority';
         multiSelectTemp = Array.isArray(answers[key]) ? [...answers[key]] : (answers[key] ? [answers[key]] : []);
+        lastMultiStep = quizStep;
     }
 
     card.innerHTML = `
@@ -598,6 +600,7 @@ function resetQuiz() {
     quizStep = 1;
     answers = {scenario:[],accessory:null,budget:null,size:null,connectivity:null,environment:null,priority:[]};
     multiSelectTemp = [];
+    lastMultiStep = -1;
     document.getElementById('quiz-card').classList.remove('hidden');
     document.getElementById('result-card').classList.add('hidden');
     renderQuiz();
