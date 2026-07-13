@@ -5,8 +5,8 @@
 const QuizData = (() => {
   const STORAGE_KEY = 'mimi_quiz_responses';
   const BITABLE_CONFIG = {
-    baseToken: 'XenmbYueGa1lP4sMiEhcTU0YnOg',
-    tableId: 'tbl4X2EDh1wYYvrL'
+    baseToken: 'UoOpbRtPoapvBEs9IIoclZ6jnBe',
+    tableId: 'tbl5OFsBbQVleHbA'
   };
 
   // --- localStorage 操作 ---

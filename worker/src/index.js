@@ -18,8 +18,8 @@ function getEnv(env) {
   return {
     appId: env.FEISHU_APP_ID,
     appSecret: env.FEISHU_APP_SECRET,
-    baseToken: env.BITABLE_BASE_TOKEN || 'XenmbYueGa1lP4sMiEhcTU0YnOg',
-    tableId: env.BITABLE_TABLE_ID || 'tbl4X2EDh1wYYvrL',
+    baseToken: env.BITABLE_BASE_TOKEN || 'UoOpbRtPoapvBEs9IIoclZ6jnBe',
+    tableId: env.BITABLE_TABLE_ID || 'tbl5OFsBbQVleHbA',
   };
 }
 
