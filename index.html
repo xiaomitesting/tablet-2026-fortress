@@ -962,37 +962,32 @@ function renderGuide() {
 
     // 人物角色推薦
     const personas = [
-        { icon:'👨\u200D💻', title:'辦公族', desc:'文書處理、視訊會議、多工切換', primary:'pad_8_pro', secondary:'pad_8_pro_matte', reason:'手寫筆+鍵盤全配備，旗艦性能不卡頓' },
-        { icon:'🎮', title:'手遊玩家', desc:'追求極致流暢的遊戲體驗', primary:'pad_mini', secondary:'pad_8_pro', reason:'165Hz電競屏+旗艦芯片，單手可握' },
-        { icon:'🎬', title:'追劇達人', desc:'大屏追劇、立體聲享受', primary:'pad_8', secondary:'pad_8_pro', reason:'四揚聲器+大屏，影院級享受' },
-        { icon:'📚', title:'學生黨', desc:'網課筆記、高性價比', primary:'redmi_pad_2_pro', secondary:'redmi_pad_2_pro_matte', reason:'支持手寫筆+鍵盤，預算友好' },
-        { icon:'👶', title:'送小朋友', desc:'護眼、安全、有趣', primary:'redmi_pad_2_kids', secondary:'redmi_pad_2_97', reason:'柔光護眼+保護殼+繪畫筆，一套搞定' },
-        { icon:'🏃', title:'通勤族', desc:'輕便攜帶、長續航', primary:'redmi_pad_2_97', secondary:'pad_mini', reason:'輕巧機身+長續航，地鐵追劇首選' },
-        { icon:'🏕️', title:'戶外工作者', desc:'隨時隨地需要上網', primary:'redmi_pad_2_pro_5g', secondary:'pad_8', reason:'5G插卡即用，12000mAh大電池' },
-        { icon:'👴', title:'送長輩', desc:'大屏簡單操作', primary:'redmi_pad_2_pro', secondary:'redmi_pad_2_97', reason:'12.1吋大屏+高性價比，操作簡單' }
+        { icon:'👨\u200D💻', title:'辦公族', primary:'pad_8_pro', secondary:'pad_8_pro_matte', reason:'手寫筆+鍵盤全配備' },
+        { icon:'🎮', title:'手遊玩家', primary:'pad_mini', secondary:'pad_8_pro', reason:'165Hz電競屏+旗艦芯片' },
+        { icon:'🎬', title:'追劇達人', primary:'pad_8', secondary:'pad_8_pro', reason:'四揚聲器+大屏' },
+        { icon:'📚', title:'學生黨', primary:'redmi_pad_2_pro', secondary:'redmi_pad_2_pro_matte', reason:'支持手寫筆+鍵盤' },
+        { icon:'👶', title:'送小朋友', primary:'redmi_pad_2_kids', secondary:'redmi_pad_2_97', reason:'柔光護眼+保護殼+繪畫筆' },
+        { icon:'🏃', title:'通勤族', primary:'redmi_pad_2_97', secondary:'pad_mini', reason:'輕巧機身+長續航' },
+        { icon:'🏕️', title:'需要電話卡功能', primary:'redmi_pad_2_pro_5g', secondary:'pad_8', reason:'5G插卡即用+12000mAh' },
+        { icon:'👴', title:'送長輩', primary:'redmi_pad_2_pro', secondary:'redmi_pad_2_97', reason:'大屏+高性價比' }
     ];
     const personaHtml = personas.map(p => {
         const pp = products.find(x => x.id === p.primary);
         const sp = products.find(x => x.id === p.secondary);
         if (!pp) return '';
         return `<div class="bg-white rounded-xl border border-gray-200 p-4 shadow-sm hover:shadow-md transition-all">
-            <div class="flex items-center gap-2 mb-2">
+            <div class="flex items-center gap-2 mb-3">
                 <span class="text-2xl">${p.icon}</span>
-                <div>
-                    <div class="font-bold text-sm text-gray-900">${p.title}</div>
-                    <div class="text-[10px] text-gray-500">${p.desc}</div>
-                </div>
+                <div class="font-bold text-sm text-gray-900">${p.title}</div>
             </div>
             <div class="bg-orange-50 rounded-lg p-3 mb-2">
-                <div class="text-[10px] text-miOrange font-bold mb-1">🏆 首選推薦</div>
-                <div class="font-bold text-sm text-gray-900">${pp.name}</div>
-                <div class="text-[11px] text-miOrange font-semibold">HK$${pp.price.toLocaleString()}</div>
+                <div class="flex items-baseline justify-between">
+                    <div class="font-bold text-sm text-gray-900">${pp.name}</div>
+                    <div class="text-miOrange font-bold text-sm">HK$${pp.price.toLocaleString()}</div>
+                </div>
+                <div class="text-[11px] text-gray-500 mt-1">${p.reason}</div>
             </div>
-            ${sp ? `<div class="bg-gray-50 rounded-lg p-2 mb-2">
-                <div class="text-[10px] text-gray-500">📋 備選</div>
-                <div class="text-xs font-semibold text-gray-700">${sp.name} HK$${sp.price.toLocaleString()}</div>
-            </div>` : ''}
-            <p class="text-[11px] text-gray-500">💡 ${p.reason}</p>
+            ${sp ? `<div class="text-[11px] text-gray-400 px-1">備選：${sp.name} HK$${sp.price.toLocaleString()}</div>` : ''}
         </div>`;
     }).join('');
 
