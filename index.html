@@ -706,11 +706,16 @@ function showRecommendation() {
 
     // 數據收集：保存本次問答到 localStorage + 同步到飛書
     if (typeof QuizData !== 'undefined') {
-        QuizData.saveResponse(answers, results.map(r => ({ product: r.product, score: r.score })));
+        const record = QuizData.saveResponse(answers, results.map(r => ({ product: r.product, score: r.score })));
+        console.log('📋 問答已保存:', record.id, 'answers:', JSON.stringify(record.answers));
         // 異步同步到飛書 Bitable（不阻塞頁面）
         QuizData.syncToFeishu().then(res => {
+            console.log('📡 同步結果:', JSON.stringify(res));
             if (res.count > 0) console.log(`✅ 已同步 ${res.count} 條記錄到飛書`);
-        }).catch(err => console.warn('同步失敗:', err));
+            else console.log('⚠️ 同步返回0條:', res.error || res.message || '無詳情');
+        }).catch(err => console.error('❌ 同步失敗:', err.message, err));
+    } else {
+        console.error('❌ QuizData 模組未載入！');
     }
 
     const top = results[0], runnerUps = results.slice(1,4);

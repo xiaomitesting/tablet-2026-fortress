@@ -201,34 +201,42 @@ const QuizData = (() => {
    */
   async function syncToFeishu() {
     const unsynced = getUnsynced();
+    console.log(`🔍 未同步記錄數: ${unsynced.length}, Worker URL: ${SYNC_WORKER_URL || '未設置'}`);
     if (unsynced.length === 0) {
       return { success: true, count: 0, message: '沒有需要同步的記錄' };
     }
     if (!SYNC_WORKER_URL) {
+      console.error('❌ SYNC_WORKER_URL 未配置');
       return { success: false, count: 0, error: 'Worker URL 未配置' };
     }
 
     try {
+      console.log(`📡 正在同步 ${unsynced.length} 條記錄到 ${SYNC_WORKER_URL}`);
       const resp = await fetch(SYNC_WORKER_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ records: unsynced }),
       });
 
+      console.log(`📡 Worker 回應: HTTP ${resp.status}`);
       if (!resp.ok) {
         const errText = await resp.text();
+        console.error(`❌ Worker 錯誤: ${resp.status}`, errText);
         return { success: false, count: 0, error: `HTTP ${resp.status}: ${errText}` };
       }
 
       const result = await resp.json();
+      console.log('📡 Worker 結果:', JSON.stringify(result));
       if (result.success) {
-        // 標記為已同步
         markSynced(unsynced.map(r => r.id));
+        console.log(`✅ 已標記 ${unsynced.length} 條為已同步`);
         return { success: true, count: unsynced.length };
       } else {
+        console.error('❌ Worker 返回失敗:', result.error);
         return { success: false, count: 0, error: result.error || '同步失敗' };
       }
     } catch (err) {
+      console.error('❌ 同步異常:', err.message, err);
       return { success: false, count: 0, error: err.message };
     }
   }
