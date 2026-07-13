@@ -632,6 +632,12 @@ function calculateMatches() {
                 reasons.push('匹配使用場景');
             } else { score += 5; warnings.push('場景不完全匹配'); }
         }
+        // 交叉加分：場景+尺寸同時匹配額外加分
+        if (answers.size && answers.scenario && answers.scenario.length > 0) {
+            if (p.screenType === answers.size && p.scenario.some(s => answers.scenario.includes(s))) {
+                score += 10; reasons.push('場景+尺寸完美匹配');
+            }
+        }
         // 預算 (20分)
         if (answers.budget) {
             if (p.budget === answers.budget) { score += 20; reasons.push('預算內'); }
@@ -639,10 +645,14 @@ function calculateMatches() {
             else if (answers.budget === 'mid' && p.budget === 'low') { score += 10; }
             else { warnings.push('超出預算'); }
         }
-        // 尺寸 (15分)
+        // 尺寸 (最高30分，反向匹配大幅懲罰)
         if (answers.size) {
-            if (p.screenType === answers.size) { score += 15; reasons.push('尺寸匹配'); }
-            else { warnings.push('尺寸不匹配'); }
+            if (p.screenType === answers.size) {
+                score += 30; reasons.push('尺寸完全匹配');
+            } else {
+                // 選了小但拿到大：反向懲罰（核心需求不符）
+                score -= 20; warnings.push('尺寸與需求不符');
+            }
         }
         // 優先級 (10分) - 支持多選，每個優先級獨立計分
         if (answers.priority && answers.priority.length > 0) {
