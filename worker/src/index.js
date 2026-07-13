@@ -74,28 +74,32 @@ async function batchWriteRecords(token, baseToken, tableId, records) {
 // 數據映射：localStorage 記錄 → Bitable 字段
 function mapRecord(record) {
   const scenarioLabels = {
-    productivity: '辦公/學習', gaming: '遊戲電競', media: '影音娛樂',
-    creative: '創意設計', reading: '閱讀', portable: '便攜出行',
-    kids: '兒童教育', outdoor: '戶外辦公'
+    productivity: '辦公與專業創作', gaming: '遊戲電競', media: '追劇與學習',
+    creative: '創意設計', reading: '閱讀/兒童', portable: '便攜出行',
+    kids: '閱讀/兒童', outdoor: '戶外辦公'
   };
   const budgetLabels = { low: '入門級 HK$1,500以下', mid: '主流級 HK$1,500–3,000', premium: '旗艦級 HK$3,000以上' };
   const sizeLabels = { compact: '小屏 ≤9吋', standard: '標準 10-11吋', large: '大屏 ≥12吋' };
   const priorityLabels = {
-    performance: '性能', battery: '續航', display: '屏幕',
+    performance: '性能', battery: '續航', display: '螢幕',
     price: '性價比', portable: '便攜', stylus: '手寫筆'
   };
   const accessoryLabels = { none: '不需要', stylus: '手寫筆', keyboard: '鍵盤', both: '都要' };
+  const connectivityLabels = { wifi_only: '純Wi-Fi', need_4g: '需要4G', need_5g: '需要5G', no_preference: '都可以' };
+  const environmentLabels = { personal: '個人使用', family: '家庭共用', office: '辦公/學校', outdoor: '戶外/移動' };
 
   const a = record.answers || {};
   const scenarios = Array.isArray(a.scenario) ? a.scenario : (a.scenario ? [a.scenario] : []);
+  const priorities = Array.isArray(a.priority) ? a.priority : (a.priority ? [a.priority] : []);
 
   return {
     '時間戳': new Date(record.timestamp).getTime() || null,
     '場景': scenarios.map(s => scenarioLabels[s] || s).join(', ') || '',
     '預算': budgetLabels[a.budget] || a.budget || '',
     '尺寸偏好': sizeLabels[a.size] || a.size || '',
-    '優先級': priorityLabels[a.priority] || a.priority || '',
+    '優先級': priorities.map(p => priorityLabels[p] || p).join(', ') || '',
     '配件需求': accessoryLabels[a.accessory] || a.accessory || '',
+    'SIM卡需求': connectivityLabels[a.connectivity] || a.connectivity || '',
     '推薦產品': record.topProduct || '',
     '匹配度': record.topScore || 0,
     '設備信息': record.deviceInfo || '',
@@ -110,9 +114,23 @@ export default {
       return new Response(null, {
         headers: {
           'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Methods': 'POST, OPTIONS',
+          'Access-Control-Allow-Methods': 'POST, GET, OPTIONS',
           'Access-Control-Allow-Headers': 'Content-Type',
         },
+      });
+    }
+
+    // 健康檢查
+    if (request.method === 'GET') {
+      const config = getEnv(env);
+      return new Response(JSON.stringify({
+        status: 'ok',
+        hasAppId: !!config.appId,
+        hasAppSecret: !!config.appSecret,
+        baseToken: config.baseToken,
+        tableId: config.tableId,
+      }), {
+        headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
       });
     }
 
@@ -155,7 +173,11 @@ export default {
       });
     } catch (err) {
       console.error('Sync error:', err);
-      return new Response(JSON.stringify({ error: err.message }), {
+      return new Response(JSON.stringify({
+        error: err.message,
+        stack: err.stack,
+        timestamp: new Date().toISOString(),
+      }), {
         status: 500,
         headers: {
           'Content-Type': 'application/json',
