@@ -1370,8 +1370,14 @@ function renderCompareTable() {
         const matteProd = profiles.find(p => p._matte);
         const regularProd = profiles.find(p => !p._matte);
         if (matteProd && regularProd) {
-            const priceGap = matteProd.price - regularProd.price;
-            summaryText = `兩款為同一系列，核心差異在屏幕：柔光版主打護眼防反光${priceGap > 0 ? `，多 HK$${priceGap}` : ''}。`;
+            // 比同規格：找容量相同的 variant 比價
+            let priceGap = matteProd.price - regularProd.price;
+            if (matteProd.variants && regularProd.variants) {
+                const matteV = matteProd.variants.find(v => `${v.ram}+${v.storage}` === `${matteProd.ram}+${matteProd.storage}`);
+                const regV = regularProd.variants.find(v => `${v.ram}+${v.storage}` === `${matteProd.ram}+${matteProd.storage}`);
+                if (matteV && regV) priceGap = matteV.price - regV.price;
+            }
+            summaryText = `兩款為同一系列，核心差異在屏幕：柔光版主打護眼防反光${priceGap > 0 ? `，同規格多 HK$${priceGap}` : ''}。`;
             if (regularProd.colors && regularProd.colors.length > (matteProd.colors || []).length) {
                 summaryText += `標準版提供 ${regularProd.colors.length} 種顏色可選。`;
             }
@@ -1429,7 +1435,9 @@ function renderCompareTable() {
         const summary = perProduct.map(pp => {
             const others = perProduct.filter(x => x.name !== pp.name);
             const unique = pp.traits.filter(t => !others.some(o => o.traits.includes(t)));
-            const label = unique.length > 0 ? unique.slice(0, 2).join('+') : pp.traits[0];
+            // 若無獨家，取最核心的差異化賣點（跳過性能等通用標籤）
+            const differentiating = pp.traits.filter(t => !['旗艦性能', '中高端性能', '中端性能', '入門性能'].includes(t));
+            const label = unique.length > 0 ? unique.slice(0, 2).join('+') : (differentiating.length > 0 ? differentiating[0] : pp.traits[0]);
             return `${pp.name}（HK$${pp.price.toLocaleString()}）${label}`;
         });
         summaryText = summary.join(' vs ');
