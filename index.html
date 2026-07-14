@@ -486,6 +486,7 @@ function renderHome() {
                     <span class="text-[10px] bg-yellow-50 text-yellow-700 px-2 py-0.5 rounded">⭐${p.rating}</span>
                 </div>
                 ${p.colors ? `<div class="flex items-center gap-1.5 mt-2"><span class="text-[10px] text-gray-400">顏色：</span>${p.colors.map(c=>{const m={'灰色':'#808080','綠色':'#4CAF50','藍色':'#2196F3','紫色':'#9C27B0','薰衣草紫':'#B39DDB','深灰色':'#505050','銀白色':'#C0C0C0','石墨灰':'#3E3E3E','薰衣紫':'#9C7FBF','青色':'#00BCD4','銀色':'#D0D0D0','柔光屏':'#E8E4DF'};return `<span class="inline-flex items-center gap-1 text-[10px] text-gray-500"><span class="w-2.5 h-2.5 rounded-full border border-gray-200" style="background:${m[c]||'#CCC'}"></span>${c}</span>`}).join('')}</div>` : ''}
+                ${p.buyLink ? `<a href="${p.buyLink}" target="_blank" rel="noopener" class="block w-full text-center bg-miOrange hover:bg-orange-600 text-white text-xs font-bold py-2 rounded-lg transition-colors mt-3">前往官網選購 →</a>` : ''}
                 </div>
             </div>
         `).join('');
@@ -1520,7 +1521,8 @@ function renderCompareTable() {
         {key:'weight',label:'重量',fmt:v=>`${v}g`},
         {key:'stylus',label:'手寫筆',fmt:v=>v?'✅ 支持':'❌ 不支持'},{key:'keyboard',label:'鍵盤',fmt:v=>v?'✅ 支持':'❌ 不支持'},
         {key:'scenario',label:'適用場景',fmt:v=>Array.isArray(v)?v.map(s=>scenarioLabels[s]||s).join('、'):(v||'-')},
-        {key:'colors',label:'可選顏色',fmt:v=>Array.isArray(v)?v.join('、'):'-'},{key:'targetUser',label:'適合人群'}
+        {key:'colors',label:'可選顏色',fmt:v=>Array.isArray(v)?v.join('、'):'-'},{key:'targetUser',label:'適合人群'},
+        {key:'buyLink',label:'產品站',fmt:v=>v?`<a href="${v}" target="_blank" rel="noopener" class="inline-flex items-center gap-1 px-3 py-1.5 bg-miOrange text-white text-xs font-bold rounded-lg hover:bg-orange-600 transition-colors">前往官網選購 →</a>`:'—'}
     );
 
     // 計算推薦標記
