@@ -1,0 +1,35 @@
+{
+  "name": "小米官網專用平板選購助手",
+  "short_name": "平板選購",
+  "description": "小米之家專用平板選購助手，7步智能推薦、機型對比、預算計算",
+  "start_url": "/tablet-2026-online/",
+  "scope": "/tablet-2026-online/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#FF6700",
+  "orientation": "portrait-primary",
+  "categories": [
+    "shopping",
+    "utilities"
+  ],
+  "icons": [
+    {
+      "src": "assets/xiaomi-logo-square.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/mi-logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "apple-touch-icon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
