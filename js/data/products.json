@@ -187,7 +187,7 @@
     "battery": 8000,
     "charging": "67W Turbo Charge",
     "weight": 480,
-    "stylus": false,
+    "stylus": true,
     "keyboard": false,
     "colors": [
       "灰色",
@@ -239,14 +239,8 @@
       "Smooth 120Hz",
       "Slim and light"
     ],
-    "cons": [
-      "不支持手寫筆",
-      "不支持鍵盤"
-    ],
-    "consEn": [
-      "No stylus support",
-      "No keyboard support"
-    ]
+    "cons": [],
+    "consEn": []
   },
   {
     "id": "pad_mini",
@@ -271,7 +265,7 @@
     "battery": 6000,
     "charging": "67W Turbo Charge",
     "weight": 270,
-    "stylus": false,
+    "stylus": true,
     "keyboard": false,
     "colors": [
       "灰色",
@@ -599,7 +593,7 @@
     "battery": 7000,
     "charging": "33W Charging",
     "weight": 465,
-    "stylus": false,
+    "stylus": true,
     "keyboard": false,
     "colors": [
       "石墨灰",
@@ -683,7 +677,7 @@
     "battery": 5000,
     "charging": "18W Charging",
     "weight": 370,
-    "stylus": false,
+    "stylus": true,
     "keyboard": false,
     "colors": [
       "石墨灰",
@@ -766,7 +760,7 @@
     "battery": 8000,
     "charging": "33W Charging",
     "weight": 470,
-    "stylus": false,
+    "stylus": true,
     "keyboard": false,
     "colors": [
       "灰色"
