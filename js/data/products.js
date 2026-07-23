@@ -275,7 +275,7 @@ const PRODUCTS = [
     keyboard: false,
     weight: 350,
     thickness: 8.0,
-    os: "HyperOS 2.0",
+    os: "HyperOS 3.0",
     connectivity: ["Wi-Fi 5", "Bluetooth 5.1"],
     colors: ["Graphite Gray", "Silver"],
     scenarios: ["reading", "media", "kids"],
@@ -285,7 +285,7 @@ const PRODUCTS = [
     cons: ["性能较弱", "存储较小"],
     rating: 4.1,
     targetUser: "老人、电子书爱好者",
-    buyLink: "https://www.mi.com/hk/product/redmi-pad-2-97/",
+    buyLink: "https://www.mi.com/hk/product/redmi-pad-2-9-7-inch/",
     lastUpdated: "2026-07-12"
   },
   {
