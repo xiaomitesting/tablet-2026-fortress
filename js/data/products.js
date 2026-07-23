@@ -273,7 +273,7 @@ const PRODUCTS = [
     speakers: 2,
     stylus: false,
     keyboard: false,
-    weight: 406,
+    weight: 401,
     thickness: 7.4,
     os: "HyperOS 3.0",
     connectivity: ["Wi-Fi 5", "Bluetooth 5.1"],
