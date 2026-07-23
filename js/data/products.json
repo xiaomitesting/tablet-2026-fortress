@@ -644,12 +644,10 @@
       "7000mAh battery life"
     ],
     "cons": [
-      "不支持手寫筆",
       "不支持鍵盤",
       "刷新率較低"
     ],
     "consEn": [
-      "No stylus",
       "No keyboard",
       "Lower refresh rate"
     ]
@@ -676,8 +674,8 @@
     "storage": 64,
     "battery": 5000,
     "charging": "18W Charging",
-    "weight": 370,
-    "stylus": true,
+    "weight": 406,
+    "stylus": false,
     "keyboard": false,
     "colors": [
       "石墨灰",
@@ -727,12 +725,10 @@
       "Affordable price"
     ],
     "cons": [
-      "不支持手寫筆",
       "不支持鍵盤",
       "電池較小"
     ],
     "consEn": [
-      "No stylus",
       "No keyboard",
       "Smaller battery"
     ]
@@ -805,12 +801,10 @@
       "Kids mode"
     ],
     "cons": [
-      "不支持手寫筆",
       "不支持鍵盤",
       "性能入門級"
     ],
     "consEn": [
-      "No stylus",
       "No keyboard",
       "Entry-level performance"
     ]
