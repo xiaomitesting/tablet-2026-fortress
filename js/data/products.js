@@ -322,6 +322,7 @@ const PRODUCTS = [
     highlight: "柔光護眼屏+繪畫筆+兒童保護殼，一套搞定",
     pros: ["柔光護眼屏", "附贈繪畫筆", "兒童安全保護殼", "2.5K高清屏"],
     cons: ["僅限套裝購買"],
+    stylus: true,
     rating: 4.9,
     targetUser: "家長、兒童教育",
     buyLink: "https://www.mi.com/hk/product/redmi-pad-2-play-bundle/",
